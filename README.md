@@ -1,3 +1,3 @@
-# Stanford CS229 Problem Set Solutions (2018 Autumn)
+# Machine Learning algorithms implemented in Numpy
 
-My solutions to the problem sets of Stanford CS229, 2018 Autumn
+This repository is a collection of different machine learning algorithms implemented in Python using only the Numpy library (no TensorFlow, PyTorch, etc...). I followed multiple problem sets from the online Machine Learning course at Stanford University (CS229, https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU). The problem instructions and source data can be found within the project folders. 
