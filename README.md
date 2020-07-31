@@ -23,4 +23,4 @@ Problem 6 - Spam classification using Naive Baye's algorithm and a support vecto
 ### Problem Set 3
 Problem 4- Semi-supervised Gaussian Mixture Model (GMM)
 
-Problem 5 - Image compression using K-means clustering
+Problem 5 - Image compression using K-means clustering (p05_kmeans.py, in ps5/data/ folder)
