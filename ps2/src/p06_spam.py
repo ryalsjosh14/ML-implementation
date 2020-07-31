@@ -18,11 +18,9 @@ def get_words(message):
        The list of normalized words from the message.
     """
 
-    # *** START CODE HERE ***
     normalized_msg = message.lower()
     new_msg = normalized_msg.split()
     return new_msg
-    # *** END CODE HERE ***
 
 def create_dictionary(messages):
     """Create a dictionary mapping words to integer indices.
@@ -40,7 +38,7 @@ def create_dictionary(messages):
         A python dict mapping words to integers.
     """
 
-    # *** START CODE HERE ***
+
     word_counts = {}
     word_dict = {}
     i = 0
@@ -56,8 +54,6 @@ def create_dictionary(messages):
                 i += 1
     return word_dict
 
-
-    # *** END CODE HERE ***
 
 def transform_text(messages, word_dictionary):
     """Transform a list of text messages into a numpy array for further processing.
@@ -76,7 +72,6 @@ def transform_text(messages, word_dictionary):
     Returns:
         A numpy array marking the words present in each message.
     """
-    # *** START CODE HERE ***
     transformed_text = np.zeros((len(messages), len(word_dictionary)))
     i = 0
     for message in messages:
@@ -87,7 +82,6 @@ def transform_text(messages, word_dictionary):
         i += 1
     return transformed_text
 
-    # *** END CODE HERE ***
 
 def fit_naive_bayes_model(matrix, labels):
     """Fit a naive bayes model.
@@ -106,7 +100,6 @@ def fit_naive_bayes_model(matrix, labels):
     Returns: The trained model
     """
 
-    # *** START CODE HERE ***
     #Compute probability that x = k given that message is ham and spam, respectively (add 1 for laplace smoothing)
     phi_k_ham = matrix[labels == 0].sum(axis=0) + 1
     phi_k_spam = matrix[labels == 1].sum(axis=0) + 1
@@ -122,7 +115,6 @@ def fit_naive_bayes_model(matrix, labels):
 
     return phi_k_ham, phi_k_spam, phi_y
 
-    # *** END CODE HERE ***
 
 def predict_from_naive_bayes_model(model, matrix):
     """Use a Naive Bayes model to compute predictions for a target matrix.
@@ -136,7 +128,6 @@ def predict_from_naive_bayes_model(model, matrix):
 
     Returns: The trained model
     """
-    # *** START CODE HERE ***
 
     #Get params from model
     phi_k_ham, phi_k_spam, phi_y = model
@@ -149,7 +140,6 @@ def predict_from_naive_bayes_model(model, matrix):
     #Compare vals of spam_prob and ham_prob. If spam_prob > ham_prob -> 1, else -> 0
     return np.greater(spam_prob, ham_prob).astype(int)
 
-    # *** END CODE HERE ***
 
 def get_top_five_naive_bayes_words(model, dictionary):
     """Compute the top five words that are most indicative of the spam (i.e positive) class.
@@ -163,7 +153,6 @@ def get_top_five_naive_bayes_words(model, dictionary):
 
     Returns: The top five most indicative words in sorted order with the most indicative first
     """
-    # *** START CODE HERE ***
     # (2, V)
     phi_k_ham, phi_k_spam, phi_y = model
     ratio = np.log(phi_k_spam / phi_k_ham)
@@ -179,7 +168,6 @@ def get_top_five_naive_bayes_words(model, dictionary):
         sol.append(rev_dict[index])
 
     return sol
-    # *** END CODE HERE ***
 
 
 def compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, radius_to_consider):
@@ -198,7 +186,6 @@ def compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, 
     Returns:
         The best radius which maximizes SVM accuracy.
     """
-    # *** START CODE HERE ***
     best_radius, best_acc = 0.0, 0.0
 
     
@@ -213,7 +200,6 @@ def compute_best_svm_radius(train_matrix, train_labels, val_matrix, val_labels, 
     print(best_radius)
     return best_radius
     
-    # *** END CODE HERE ***
 
 def load_spam_dataset(tsv_path):
     """Load the spam dataset from a TSV file
@@ -266,7 +252,6 @@ def train_and_predict_svm(train_matrix, train_labels, test_matrix, radius):
 def svm_train(matrix, category, radius):
     state = {}
     M, N = matrix.shape
-    #####################
     Y = 2 * category - 1
     matrix = 1. * (matrix > 0)
     squared = np.sum(matrix * matrix, axis=1)
@@ -294,13 +279,11 @@ def svm_train(matrix, category, radius):
     state['alpha_avg'] = alpha_avg
     state['Xtrain'] = matrix
     state['Sqtrain'] = squared
-    ####################
     return state
 
 def svm_predict(state, matrix, radius):
     M, N = matrix.shape
     output = np.zeros(M)
-    ###################
     Xtrain = state['Xtrain']
     Sqtrain = state['Sqtrain']
     matrix = 1. * (matrix > 0)
@@ -310,7 +293,6 @@ def svm_predict(state, matrix, radius):
     alpha_avg = state['alpha_avg']
     preds = K.dot(alpha_avg)
     output = (1 + np.sign(preds)) // 2
-    ###################
     return output
 
 
